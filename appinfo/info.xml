@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>sessiontoken</id>
+    <name>Sessiontoken</name>
+    <summary>Sessiontoken automatic login</summary>
+    <description><![CDATA[By installing the sessiontoken app of your Nextcloud you enable third-party apps with a special key to start the first session of a new user, and to get token to impersonate as this user from third party apps. Please note that this app is not compatible with instances that have encryption enabled.]]></description>
+
+    <version>1.0.0</version>
+    <licence>agpl</licence>
+    <author>Benjamin Sonntag</author>
+    <namespace>Sessiontoken</namespace>
+
+    <category>tools</category>
+    <website>https://gitlab.octopuce.fr/octopuce/nextcloud-sessiontoken</website>
+    <bugs>https://gitlab.octopuce.fr/octopuce/nextcloud-sessiontoken/-/issues</bugs>
+    <repository>https://gitlab.octopuce.fr/octopuce/nextcloud-sessiontoken.git</repository>
+
+    <dependencies>
+		<nextcloud min-version="20" max-version="25" />
+    </dependencies>
+
+</info>

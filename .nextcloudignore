@@ -1,0 +1,10 @@
+CHANGELOG.md
+.drone.yml
+.git
+.gitignore
+Makefile
+.nextcloudignore
+README.md
+screenshots
+.scrutinizer.yml
+tests
