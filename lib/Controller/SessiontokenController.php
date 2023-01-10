@@ -154,7 +154,7 @@ class SessiontokenController extends Controller {
         }
 
         $token = $this->generateRandomDeviceToken();
-        $deviceToken = $this->tokenProvider->generateToken($token, $this->uid, $this->uid, "", $name, IToken::PERMANENT_TOKEN);
+        $deviceToken = $this->tokenProvider->generateToken($token, $this->uid, $this->uid, null, $name, IToken::PERMANENT_TOKEN);
         $tokenData = $deviceToken->jsonSerialize();
 
         $this->publishActivity(Provider::APP_TOKEN_CREATED, $deviceToken->getId(), ['name' => $deviceToken->getName()]);
