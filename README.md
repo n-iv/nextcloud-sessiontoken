@@ -13,7 +13,24 @@ usage:
 now you can ask for a token for any user on this Nextcloud by calling the following endpoint : 
 
 curl -XPOST https://yournextcloud/apps/sessiontoken/token -d "apikey=yourpassword&user=theusername&name=your-application"
-{"token":"wbx8n-8KAn5-cfDZa-ABxDj-TGHJX","loginName":"theusername","deviceToken":{"id":62,"name":"your-application","lastActivity":1667504416,"type":1,"scope":{"filesystem":true}}}
+
+
+The answer will be formatted as following
+{
+    "token":"wbx8n-8KAn5-cfDZa-ABxDj-TGHJX",
+    "loginName":"theusername",
+    "deviceToken":
+        {
+            "id":62,
+            "name":"your-application",
+            "lastActivity":1667504416,
+            "type":1,
+            "scope":
+                {
+                    "filesystem":true
+                }
+        }
+}
 
 your-application is a mandatory freeform string, that will be visible in the user profile in its "security" tab.
 
