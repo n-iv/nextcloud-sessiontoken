@@ -6,9 +6,7 @@ Heavily based on impersonate app, but can be used even if the user never logged-
 
 # Installation
 
-- first define a 32 characters (minimum) password and write it down in your personal password vault 
-
-- then clone the repository in your apps/ folder and name it "sessiontoken" :
+- clone the repository in your apps/ folder and name it "sessiontoken" :
 
 ```
 # from your nextcloud root folder :
@@ -17,19 +15,24 @@ git clone https://gitlab.octopuce.fr/octopuce-public/nextcloud-sessiontoken.git 
 cd sessiontoken
 ```
 
-- now hash the password using:
+- now get a random API key and the hashed version of it by using :
 
 ```
-php hash-apikey.php <your password>
+php hash-apikey.php 
 ```
 
-- store the hashed password into config/config.php in a key named "sessiontoken_apikey_hash"
+- keep your cleartext api key in a safe place to be used in your app using sessiontoken.
+- store the hashed api key into config/config.php in a key named "sessiontoken_apikey_hash"
 - in the nextcloud application manager, enable the application named "sessiontoken" 
 
-now you can ask for a token for any user on this Nextcloud by calling the following endpoint : 
+That's it, the sessiontoken is now configured. 
+
+# Usage 
+
+Now you can ask for a token for any user on this Nextcloud by calling the following endpoint : 
 
 ```
-curl -XPOST https://yournextcloud/apps/sessiontoken/token -d "apikey=yourpassword&user=theusername&name=your-application"
+curl -XPOST https://yournextcloud/apps/sessiontoken/token -d "apikey=yourapikey&user=theusername&name=your-application"
 ```
 
 
