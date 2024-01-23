@@ -1,6 +1,6 @@
 <?php
 
-echo "This scripts returns a random API key for sessiontoken and the Hashed version of it, that you should put in your config.php\n"
+echo "\nThis scripts returns a random API key for sessiontoken and the Hashed version of it, that you should put in your config.php\n\n";
 
 function randomapi() {
     $str="abcdefghjkmnpqrstuvwxyz23456789";
@@ -10,7 +10,7 @@ function randomapi() {
 }
 
 $api=randomapi();
-echo "Your sessiontoken API key (that you can use in your apps) is   ".$api."\n";
-echo "The hashed version that you should add to your config.php is : \n\n";
-echo '"sessiontoken_apikey_hash" => "'.password_hash($argv[1],PASSWORD_DEFAULT).'",'."\n";
+echo "Your sessiontoken API key (that you can use in your apps) is\n     ".$api."\n\n";
+echo "The hashed version that you should add to your config.php is : \n";
+echo '     "sessiontoken_apikey_hash" => "'.password_hash($api,PASSWORD_DEFAULT).'",'."\n\n";
 
