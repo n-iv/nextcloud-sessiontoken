@@ -12,5 +12,5 @@ function randomapi() {
 $api=randomapi();
 echo "Your sessiontoken API key (that you can use in your apps) is\n     ".$api."\n\n";
 echo "The hashed version that you should add to your config.php is : \n";
-echo '     "sessiontoken_apikey_hash" => "'.password_hash($api,PASSWORD_DEFAULT).'",'."\n\n";
+echo "     'sessiontoken_apikey_hash' => '".password_hash($api,PASSWORD_DEFAULT)."',\n\n";
 
