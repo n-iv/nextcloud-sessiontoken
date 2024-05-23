@@ -17,7 +17,7 @@
     <repository>https://gitlab.octopuce.fr/octopuce/nextcloud-sessiontoken.git</repository>
 
     <dependencies>
-		<nextcloud min-version="20" max-version="25" />
+		<nextcloud min-version="20" max-version="29" />
     </dependencies>
 
 </info>
