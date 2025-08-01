@@ -7,6 +7,8 @@
  *
  * @author Benjamin Sonntag <benjamin@octopuce.fr>
  * @copyright Benjamin Sonntag 2021
+ * @author Nicolas Varlot <nicolas.varlot@ac-versailles.fr>
+ * @copyright Nicolas Varlot 2025
  */
 
 namespace OCA\Sessiontoken\Controller;
@@ -209,4 +211,3 @@ class SessiontokenController extends Controller {
 
 
 } // SettingsController
-
