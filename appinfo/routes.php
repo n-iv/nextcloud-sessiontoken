@@ -9,19 +9,12 @@
  * @copyright Benjamin Sonntag 2021
  */
 
-use OCP\AppFramework\App;
-$application = new App('sessiontoken');
-$application->registerRoutes(
-	$this,
-	[
-		'routes' => [
-
-			[
-				'name' => 'Sessiontoken#token',
-				'url' => '/token',
-				'verb' => 'POST',
-			],
-
+return [
+	'routes' => [
+		[
+			'name' => 'Sessiontoken#token',
+			'url' => '/token',
+			'verb' => 'POST',
 		],
-	]
-);
+	],
+];

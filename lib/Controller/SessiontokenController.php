@@ -17,7 +17,7 @@ use OCP\AppFramework\Http\JSONResponse;
 use OCP\IConfig;
 use OCP\IGroupManager;
 use OCP\IURLGenerator;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 use OCP\IRequest;
 use OCP\AppFramework\Controller;
 use OCP\ISession;
@@ -26,10 +26,11 @@ use OCP\IUserManager;
 use OCP\Security\ISecureRandom;
 use OCP\Activity\IManager;
 use OCA\Settings\Activity\Provider;
-use OC\Authentication\Token\IProvider;
-use OC\Authentication\Token\IToken;
+use OCP\Authentication\Token\IProvider;
+use OCP\Authentication\Token\IToken;
 use OCP\IUserSession;
 use Redis;
+use BadMethodCallException;
 
 class SessiontokenController extends Controller {
 	/** @var IUserManager */
@@ -42,7 +43,7 @@ class SessiontokenController extends Controller {
 	private $session;
 	/** @var IConfig */
 	private $config;
-	/** @var ILogger */
+	/** @var LoggerInterface */
 	private $logger;
 	/** @var IL10N */
 	private $l;
@@ -66,7 +67,7 @@ class SessiontokenController extends Controller {
 	 * @param IUserSession $userSession
 	 * @param ISession $session
 	 * @param IConfig $config
-	 * @param ILogger $logger
+	 * @param LoggerInterface $logger
      * @param ISecureRandom $random
      * @param IProvider $tokenProvider
      * @param IManager $activityManager
@@ -80,7 +81,7 @@ class SessiontokenController extends Controller {
 								IUserSession $userSession,
 								ISession $session,
 								IConfig $config,
-								ILogger $logger,
+								LoggerInterface $logger,
                                 ISecureRandom $random,
                                 IProvider $tokenProvider,
                                 IManager $activityManager,
@@ -119,16 +120,24 @@ class SessiontokenController extends Controller {
         // key check
         $apikey_hash = $this->config->getSystemValue('sessiontoken_apikey_hash');
         if (!$apikey_hash) {
-            header("HTTP/1.0 403 apikey not configured");
-            exit();
-        }
-        if (!isset($_POST["apikey"]) || !password_verify($_POST["apikey"], $apikey_hash) ) {
-            header("HTTP/1.0 403 apikey invalid");
-            exit();
+            return new JSONResponse(['message' => 'API key not configured'], Http::STATUS_FORBIDDEN);
         }
         
-        $userId = $_POST["user"];
-        $name = trim($_POST["name"]);
+        $apikey = $this->request->getParam('apikey');
+        if (!$apikey || !password_verify($apikey, $apikey_hash) ) {
+            return new JSONResponse(['message' => 'API key invalid'], Http::STATUS_FORBIDDEN);
+        }
+        
+        $userId = $this->request->getParam('user');
+        $name = trim($this->request->getParam('name', ''));
+
+        if (!$userId) {
+            return new JSONResponse(['message' => 'User parameter is required'], Http::STATUS_BAD_REQUEST);
+        }
+        
+        if (!$name) {
+            return new JSONResponse(['message' => 'Name parameter is required'], Http::STATUS_BAD_REQUEST);
+        }
 
 		$user = $this->userManager->get($userId);
 		if ($user === null) {
@@ -136,7 +145,7 @@ class SessiontokenController extends Controller {
 		}
 
 		$this->logger->warning(
-			sprintf('Getting a token for user %u',$userId),	['app' => 'sessiontoken']
+			sprintf('Getting a token for user %s',$userId),	['app' => 'sessiontoken']
 		);
         
         $this->uid=$user->getUID();
