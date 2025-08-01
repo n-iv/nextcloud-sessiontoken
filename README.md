@@ -60,6 +60,3 @@ The answer will be formatted as following
 your-application is a mandatory freeform string, that will be visible in the user profile in its "security" tab.
 
 you can now use the login "theusername" and the password wbx8n-8KAn5-cfDZa-ABxDj-TGHJX to connect to the webdav or NC OCS API as this user.
-
-
-
