@@ -4,6 +4,8 @@ This application provides 1 URL endpoint to get a permanent token to be able to 
 
 Heavily based on impersonate app, but can be used even if the user never logged-in.
 
+**Original source:** https://octoforge.fr/octopuce/sessiontoken
+
 # Installation
 
 - clone the repository in your apps/ folder and name it "sessiontoken" :
