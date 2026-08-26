@@ -7,6 +7,15 @@ All notable changes to this project will be documented in this file.
 
 - Initial release
 
+## 33.0.8
+
+### Fixed
+
+- Use an empty password in `completeLogin()` instead of the literal `"empty"`:
+  the non-empty fake password was propagated by core's `UserLoggedInListener`
+  (`updatePasswords`) onto every existing app token of the impersonated user,
+  invalidating them all and forcing every sync client to reconnect.
+
 ## 31.0.0 - Fork by Nicolas Varlot
 
 ### Changed

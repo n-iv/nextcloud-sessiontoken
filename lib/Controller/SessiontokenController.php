@@ -152,7 +152,11 @@ class SessiontokenController extends Controller {
         
         $this->uid=$user->getUID();
 
-        $details=["password"=>"empty", "loginName" => $this->uid ];
+        // The password MUST be an empty string: a non-empty value is broadcast by
+        // PostLoginEvent and core's UserLoggedInListener then rewrites it onto every
+        // existing app token of the user (updatePasswords), which invalidates them
+        // all at the next 5-minute credential check (clients get logged out).
+        $details=["password"=>"", "loginName" => $this->uid ];
         
         $this->manager->emit('\OC\User', 'preLogin', $details );
         if (! $this->userSession->completeLogin($user,$details,true)) {

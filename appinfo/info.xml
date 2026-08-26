@@ -6,7 +6,7 @@
     <summary>Sessiontoken automatic login</summary>
     <description><![CDATA[By installing the sessiontoken app of your Nextcloud you enable third-party apps with a special key to start the first session of a new user, and to get token to impersonate as this user from third party apps. Please note that this app is not compatible with instances that have encryption enabled.]]></description>
 
-    <version>32.0.0</version>
+    <version>33.0.8</version>
     <licence>agpl</licence>
     <author>Benjamin Sonntag</author>
     <author>Nicolas Varlot</author>
@@ -18,7 +18,7 @@
     <repository>https://github.com/n-iv/nextcloud-sessiontoken.git</repository>
 
     <dependencies>
-		<nextcloud min-version="30" max-version="32" />
+		<nextcloud min-version="30" max-version="33" />
     </dependencies>
 
 </info>
